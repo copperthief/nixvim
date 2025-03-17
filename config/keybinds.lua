@@ -91,8 +91,8 @@ bind('<C-m>', ':marks<CR>') -- list marks
 -- lsp stuff
 
 
-bind('<Leader>dc', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-bind('<Leader>df', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+bind('<Leader>c', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+bind('<Leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>')
 bind('<Leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
 bind('<Leader>i', '<cmd>lua vim.lsp.buf.implementation()<CR>')
 bind('<Leader>s', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
@@ -100,13 +100,19 @@ bind('<Leader>t', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
 bind('<Leader>r', '<cmd>lua vim.lsp.buf.references()<CR>')
 bind('<Leader>n', '<cmd>lua vim.lsp.buf.rename()<CR>')
 bind('<Leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-bind('<Leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>')
-bind('<Leader>ep', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-bind('<Leader>en', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+bind('<Leader>f', '<cmd>lua vim.diagnostic.open_float()<CR>')
+bind('<Leader>p', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+bind('<Leader>j', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 bind('<C-f>', '<cmd>lua vim.lsp.buf.format()<CR>')
 
-bind('<C-l>', '<cmd>PickColor<cr>', { 'n', 'i' });
-bind('<C-d>', '<cmd>PickColorInsert<cr>', { 'n', 'i' });
+
+-- plugin stuff
+
+bind('<C-t>', ':ToggleTerm<CR>')
+
+
+
+
 
 local keybinds = {
 

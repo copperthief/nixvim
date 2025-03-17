@@ -1,11 +1,13 @@
 {
   # Import all your configuration modules here
-  imports = [ ./bufferline.nix ./keybinds.nix ];
+  imports = [ ./bufferline.nix ./keybinds.nix ./telescope.nix ./autoclose.nix ];
 
   colorschemes.gruvbox.enable = true;
 
   plugins = {
-    lualine.enable = true;
+  # TODO: configure bufferline
+    # TODO: configure autopairs
+    lualine.enable = true; # TODO: configure
     transparent.enable = true;
     toggleterm.enable = true; # TODO: configure
     luasnip.enable = true; # TODO: configure
@@ -18,8 +20,9 @@
     # TODO: setup dap stuff
     # obsidian.enable = true; # TODO: configure
     marks.enable = true; # TODO:configure
+    # TODO try nvim.bacon
 
-
+    # TODO: add nix language server
 
 
     treesitter = {
@@ -36,6 +39,15 @@
       enable = true;
       servers = {
         lua_ls.enable = true;
+        jdtls.enable = true;
+        pyright.enable = true;
+        jsonls.enable = true;
+        clangd.enable = true;
+        ts_ls.enable = true;
+        html.enable = true;
+        cssls.enable = true;
+        cmake.enable = true;
+        nil_ls.enable = true;
       };
     };
 
@@ -103,7 +115,7 @@
     "<C-Space>" = "cmp.mapping.complete()";
     "<C-e>" = "cmp.mapping.abort()";
     "<CR>" = "cmp.mapping.confirm({ select = false })";
-  }
+  };
 
 
 
@@ -124,7 +136,7 @@
     shiftwidth = 2; # spaces per indentation
     tabstop = 2; # spaces per tab
     cursorline = true; # higlight current line
-    wrap = false;
+    wrap = true;
     scrolloff = 8;
     sidescrolloff = 0;
 
