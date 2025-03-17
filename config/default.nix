@@ -17,6 +17,7 @@
     rustaceanvim.enable = true; # TODO: configure
     # TODO: setup dap stuff
     # obsidian.enable = true; # TODO: configure
+    marks.enable = true; # TODO:configure
 
 
 
@@ -41,12 +42,12 @@
     # TODO: look into sources
     cmp-buffer.enable = true;
     cmp-path.enable = true;
-    cmp-nvim-lua.enable = true;
     cmp-latex-symbols.enable = true;
     cmp-treesitter.enable = true;
     cmp_luasnip.enable = true;
     cmp-cmdline.enable = true;
 
+    # TODO: look into window configuration options
     cmp = {
       enable = true;
       autoEnableSources = true;
@@ -54,10 +55,55 @@
         { name = "nvim-lsp"; }
         { name = "path"; }
         { name = "buffer"; }
+        { name = "latex_symbols"; }
+        { name = "treesitter"; }
+        { name = "cmdline"; }
       ];
+
+      cmdline = {
+        "/" = {
+          mapping = {
+            __raw = "cmp.mapping.preset.cmdline()";
+          };
+          sources = [
+            {
+              name = "buffer";
+            }
+          ];
+        };
+        ":" = {
+          mapping = {
+            __raw = "cmp.mapping.preset.cmdline()";
+          };
+          sources = [
+            {
+              name = "path";
+            }
+            {
+              name = "cmdline";
+              option = {
+                ignore_cmds = [
+                  "Man"
+                  "!"
+                ];
+              };
+            }
+          ];
+        };
+      };
 
     };
   };
+
+
+  plugins.cmp.settings.mapping = {
+    
+    "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+    "<C-f>" = "cmp.mapping.scroll_docs(4)";
+    "<C-Space>" = "cmp.mapping.complete()";
+    "<C-e>" = "cmp.mapping.abort()";
+    "<CR>" = "cmp.mapping.confirm({ select = false })";
+  }
 
 
 
