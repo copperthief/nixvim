@@ -70,6 +70,9 @@ bind('<C-S-x>', ':split<CR>') -- open new horizontal split
 bind('x', '<C-w>w') -- next split
 bind('X', '<C-w>W') -- prev split
 
+bind('b', '<C-w><w>') -- move to next window
+-- ex. from main editor to toggleterm
+
 -- these wont work with my keyboard
 --bind('<Leader>>', '<C-w>>') -- increase width of focused split
 --bind('<Leader><', '<C-w><') -- decrease width of focused split
@@ -87,6 +90,9 @@ bind('m', '`') -- goto mark
 bind('M', 'm') -- create mark
 bind('<C-m>', ':marks<CR>') -- list marks
 -- :delmark/ :delm to delete mark
+-- m: to preview mark
+-- m[ goto prev mark
+-- m] goto next mark
 
 -- lsp stuff
 

@@ -1,6 +1,6 @@
 {
   # Import all your configuration modules here
-  imports = [ ./bufferline.nix ./keybinds.nix ./telescope.nix ./autoclose.nix ];
+  imports = [ ./bufferline.nix ./keybinds.nix ./telescope.nix ./autoclose.nix ./cmp.nix ];
 
   colorschemes.gruvbox.enable = true;
 
@@ -9,12 +9,11 @@
     # TODO: configure autopairs
     lualine.enable = true; # TODO: configure
     transparent.enable = true;
-    toggleterm.enable = true; # TODO: configure
+    toggleterm.enable = true;
     luasnip.enable = true; # TODO: configure
     friendly-snippets.enable = true; # TODO: more snippets?
     gitsigns.enable = true; # TODO: configure
     todo-comments.enable = true;
-    telescope.enable = true; # TODO: configure
     oil.enable = true; # TODO: configure
     rustaceanvim.enable = true; # TODO: configure
     # TODO: setup dap stuff
@@ -60,62 +59,9 @@
     cmp-cmdline.enable = true;
 
     # TODO: look into window configuration options
-    cmp = {
-      enable = true;
-      autoEnableSources = true;
-      settings.sources = [
-        { name = "nvim-lsp"; }
-        { name = "path"; }
-        { name = "buffer"; }
-        { name = "latex_symbols"; }
-        { name = "treesitter"; }
-        { name = "cmdline"; }
-      ];
-
-      cmdline = {
-        "/" = {
-          mapping = {
-            __raw = "cmp.mapping.preset.cmdline()";
-          };
-          sources = [
-            {
-              name = "buffer";
-            }
-          ];
-        };
-        ":" = {
-          mapping = {
-            __raw = "cmp.mapping.preset.cmdline()";
-          };
-          sources = [
-            {
-              name = "path";
-            }
-            {
-              name = "cmdline";
-              option = {
-                ignore_cmds = [
-                  "Man"
-                  "!"
-                ];
-              };
-            }
-          ];
-        };
-      };
-
-    };
   };
 
 
-  plugins.cmp.settings.mapping = {
-    
-    "<C-b>" = "cmp.mapping.scroll_docs(-4)";
-    "<C-f>" = "cmp.mapping.scroll_docs(4)";
-    "<C-Space>" = "cmp.mapping.complete()";
-    "<C-e>" = "cmp.mapping.abort()";
-    "<CR>" = "cmp.mapping.confirm({ select = false })";
-  };
 
 
 
