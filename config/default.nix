@@ -1,6 +1,6 @@
 {
   # Import all your configuration modules here
-  imports = [ ./bufferline.nix ./keybinds.nix ./telescope.nix ./autoclose.nix ./cmp.nix ];
+  imports = [ ./bufferline.nix ./keybinds.nix ./telescope.nix ./autoclose.nix ./cmp.nix ./toggleterm.nix ];
 
   colorschemes.gruvbox.enable = true;
 
@@ -9,7 +9,6 @@
     # TODO: configure autopairs
     lualine.enable = true; # TODO: configure
     transparent.enable = true;
-    toggleterm.enable = true;
     luasnip.enable = true; # TODO: configure
     friendly-snippets.enable = true; # TODO: more snippets?
     gitsigns.enable = true; # TODO: configure
@@ -85,6 +84,7 @@
     wrap = true;
     scrolloff = 8;
     sidescrolloff = 0;
+    splitbelow = true; # new windows go under
 
     # line numbers
     number = true;
@@ -97,6 +97,11 @@
     ignorecase = true;
 
 
+  };
+
+  diagnostics = {
+    virtual_lines.only_current_line = true;
+    virtual_text = false;
   };
 
 }

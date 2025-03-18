@@ -3,10 +3,9 @@
     enable = true;
 
     settings = {
-      size = 2;
+      size = 20;
       shade_terminals = false;
       autochdir = true;
-      poopoo = false;
     };
   };
 }
