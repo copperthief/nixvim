@@ -96,6 +96,7 @@
     hlsearch = true; # highlight results
     ignorecase = true;
 
+    hidden = true;
 
   };
 
