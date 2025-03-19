@@ -3,12 +3,14 @@
   plugins = {
     # completion sources
     cmp-buffer.enable = true;
-    cmp-cmdline.enable = true;
-    cmp-latex-symbols.enable = true;
-    cmp_luasnip.enable = true; # TODO
-    cmp-nvim-lua.enable = true;
-    cmp-path.enable = true;
-    cmp-treesitter.enable = true;
+    cmp-nvim-lsp.enable = true;
+    #cmp-cmdline.enable = true;
+    #cmp-latex-symbols.enable = true;
+    #cmp_luasnip.enable = true; # TODO
+    #cmp-nvim-lua.enable = true;
+    #cmp-path.enable = true;
+    #cmp-treesitter.enable = true;
+    # add other two nvim lsps and lspkind
 
     cmp = {
       enable = true;
@@ -17,10 +19,10 @@
       settings = {
 
         sources = [
-          #{ name = "buffer"; }
-          { name = "cmdline"; }
+          { name = "buffer"; }
+          #{ name = "cmdline"; }
           #{ name = "latex_symbols"; }
-          { name = "nvim-lsp"; }
+          { name = "nvim_lsp"; }
           #{ name = "nvim-lua"; }
           #{ name = "path"; }
           #{ name = "treesitter"; }

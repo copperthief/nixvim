@@ -14,7 +14,7 @@
     gitsigns.enable = true; # TODO: configure
     todo-comments.enable = true;
     oil.enable = true; # TODO: configure
-    rustaceanvim.enable = true; # TODO: configure
+    #rustaceanvim.enable = true; # TODO: configure
     # TODO: setup dap stuff
     # obsidian.enable = true; # TODO: configure
     marks.enable = true; # TODO:configure
@@ -46,16 +46,17 @@
         cssls.enable = true;
         cmake.enable = true;
         nil_ls.enable = true;
+        rust-analyzer.enable = true;
       };
     };
 
     # TODO: look into sources
-    cmp-buffer.enable = true;
-    cmp-path.enable = true;
-    cmp-latex-symbols.enable = true;
-    cmp-treesitter.enable = true;
-    cmp_luasnip.enable = true;
-    cmp-cmdline.enable = true;
+    #cmp-buffer.enable = true;
+    #cmp-path.enable = true;
+    #cmp-latex-symbols.enable = true;
+    #cmp-treesitter.enable = true;
+    #cmp_luasnip.enable = true;
+    #cmp-cmdline.enable = true;
 
     # TODO: look into window configuration options
   };
@@ -104,5 +105,14 @@
     virtual_lines.only_current_line = true;
     virtual_text = false;
   };
+
+  autoCmd = [
+    { # DO NOT remove this or lsp completion completely breaks for god knows why
+      event = [ "LspAttach" ];
+      callback = {
+        __raw = "function(ev) vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc' end ";
+      };
+    }
+  ];
 
 }
