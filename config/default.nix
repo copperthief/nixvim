@@ -47,6 +47,10 @@
         cmake.enable = true;
         nil_ls.enable = true;
         #rust-analyzer.enable = true;
+        rust-analyzer = {
+          installCargo = false;
+          installRustc = false;
+        };
       };
     };
 
