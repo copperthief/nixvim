@@ -17,13 +17,13 @@
       settings = {
 
         sources = [
-          { name = "buffer"; }
+          #{ name = "buffer"; }
           { name = "cmdline"; }
-          { name = "latex_symbols"; }
+          #{ name = "latex_symbols"; }
           { name = "nvim-lsp"; }
-          { name = "nvim-lua"; }
-          { name = "path"; }
-          { name = "treesitter"; }
+          #{ name = "nvim-lua"; }
+          #{ name = "path"; }
+          #{ name = "treesitter"; }
         ];
    
         mapping = { 
