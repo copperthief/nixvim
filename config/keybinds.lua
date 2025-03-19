@@ -48,8 +48,8 @@ bind('}', '}') -- next paragraph
 bind('l', 'o') -- insert line
 
 bind('/', '/') -- search buffer
-bind('j', 'n') -- next occurence
-bind('J', 'N') -- previous occurence
+bind('<C-f>', 'n') -- next occurence
+bind('<C-F>', 'N') -- previous occurence
 
 -- f F t T # *
 
@@ -61,7 +61,11 @@ bind('Z', ':redo<CR>') --redo
 
 bind('<Leader><ESC>', '<C-\\><C-n>', 't') -- escape terminal mode
 
-bind('<C-k>', ':tabnew<CR>') -- new tab
+bind('<C-j>', ':enew<CR>') -- new buffer
+bind('j', ':bn<CR>') -- next buffer
+bind('J', ':bp<CR>') -- prev buffer
+
+bind('<C-k>', ':tabedit .<CR>') -- new tab
 bind('K', ':tabp<CR>') -- prev tab
 bind('k', ':tabn<CR>') -- next tab
 
