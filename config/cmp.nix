@@ -19,10 +19,10 @@
       settings = {
 
         sources = [
+          { name = "nvim_lsp"; }
           { name = "buffer"; }
           #{ name = "cmdline"; }
           #{ name = "latex_symbols"; }
-          { name = "nvim_lsp"; }
           #{ name = "nvim-lua"; }
           #{ name = "path"; }
           #{ name = "treesitter"; }
