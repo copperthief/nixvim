@@ -14,7 +14,7 @@
     gitsigns.enable = true; # TODO: configure
     todo-comments.enable = true;
     oil.enable = true; # TODO: configure
-    #rustaceanvim.enable = true; # TODO: configure
+    rustaceanvim.enable = true; # TODO: configure
     # TODO: setup dap stuff
     # obsidian.enable = true; # TODO: configure
     marks.enable = true; # TODO:configure
@@ -46,7 +46,7 @@
         cssls.enable = true;
         cmake.enable = true;
         nil_ls.enable = true;
-        rust-analyzer.enable = true;
+        #rust-analyzer.enable = true;
       };
     };
 
