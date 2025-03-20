@@ -1,8 +1,7 @@
-{
+{ pkgs, ... }@specialArgs:
+{ 
   # Import all your configuration modules here
   imports = [ ./bufferline.nix ./keybinds.nix ./telescope.nix ./autoclose.nix ./cmp.nix ./toggleterm.nix ];
-
-  colorschemes.gruvbox.enable = true;
 
   plugins = {
   # TODO: configure bufferline
@@ -117,6 +116,50 @@
         __raw = "function(ev) vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc' end ";
       };
     }
+  ];
+
+  colorschemes = {
+    cyberdream.enable = true;
+    #everforest.enable = true;
+    #modus.enable = true;
+    #rose-pine.enable = true;
+    #oxocarbon.enable = true;
+    #gruvbox.enable = true;
+    #melange.enable = true;
+
+  };
+
+  extraPlugins = [
+
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "ashen";
+      src = pkgs.fetchFromGitHub {
+          owner = "ficcdaf";
+          repo = "ashen.nvim";
+          rev = "4d161f812f558b5ecde002d80e483a3122ab60f4";
+          hash = "sha256-xfEPDHaVmddfK2jBex34MH8y9p5HrNPaPK18mExdRMQ=";
+      };
+    })
+
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "lackluster";
+      src = pkgs.fetchFromGitHub {
+          owner = "slugbyte";
+          repo = "lackluster.nvim";
+          rev = "662fba7e6719b7afc155076385c00d79290bc347";
+          hash = "sha256-oZca/MfsYBW0Fa/yBUGXFZKxJ05DfDNeWj5XaOoU4Mo=";
+      };
+    })
+
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "reddish";
+      src = pkgs.fetchFromGitHub {
+          owner = "paulfrische";
+          repo = "reddish.nvim";
+          rev = "82fa574fc58a980143c6094526edd7da76f05f7c";
+          hash = "sha256-qMFE09FSYTCMZ+kktNUSkpuTZmkQEqCfwIw2us/lUos=";
+      };
+    })
   ];
 
 }
