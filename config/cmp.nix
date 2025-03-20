@@ -36,7 +36,7 @@
           "<CR>" = "cmp.mapping.confirm({ select = false })";
         };
 
-        completion.keyword_length = 2;
+        #completion.keyword_length = 2;
 
       };
 
