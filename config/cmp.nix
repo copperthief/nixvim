@@ -40,7 +40,7 @@
 
         #completion.keyword_length = 2;
 
-        completeopt = "menu,menuone,noselect,fuzzy,popup";
+        completion.completeopt = "menu,menuone,noselect,fuzzy,popup,noinsert";
 
       };
 
