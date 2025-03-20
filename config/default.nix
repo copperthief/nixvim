@@ -119,7 +119,7 @@
   ];
 
   colorschemes = {
-    cyberdream.enable = true;
+    #cyberdream.enable = true;
     #everforest.enable = true;
     #modus.enable = true;
     #rose-pine.enable = true;
