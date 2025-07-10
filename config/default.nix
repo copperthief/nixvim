@@ -18,6 +18,7 @@
     # obsidian.enable = true; # TODO: configure
     marks.enable = true; # TODO:configure
     # TODO try nvim.bacon
+    markview.enable = true;
 
     # TODO: add nix language server
 
