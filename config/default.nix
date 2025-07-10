@@ -53,6 +53,7 @@
       };
     };
 
+
     # TODO: look into sources
     #cmp-buffer.enable = true;
     #cmp-path.enable = true;
@@ -62,6 +63,11 @@
     #cmp-cmdline.enable = true;
 
     # TODO: look into window configuration options
+
+    # TODO: yazi wtf vim-be-good timerly which-key specs trouble rest nvim-surround peek smear-cursor prescence octo neorg oil lean papis oil-git-status
+    # kulala jupytext neotest nerdy markdown-preview vim-julia-cell vim-nix image.nvim helpview goyo firenvim distant direnv committia commentary vim-sandwich
+    # remote-nvim render-markdown web-tools wilder 
+
   };
 
 
@@ -70,6 +76,8 @@
 
   clipboard.register = "unnamedplus"; # use system clipboard
   clipboard.providers.wl-copy.enable = true;
+
+  colorscheme = "ashen";
 
   opts = {
 
@@ -130,6 +138,16 @@
   };
 
   extraPlugins = [
+
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "live-preview";
+      src = pkgs.fetchFromGitHub {
+        owner = "turbio";
+        repo = "bracey.vim";
+        rev = "4e1a22acc01787814819df1057d039d4ecf357eb";
+        hash = "sha256-As4k31PSSmrSkUemcnkxzrHd9nWXyGJguH9MKTpEnxU=";
+      };
+    })
 
     (pkgs.vimUtils.buildVimPlugin {
       name = "ashen";
