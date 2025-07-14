@@ -19,6 +19,8 @@
     marks.enable = true; # TODO:configure
     # TODO try nvim.bacon
     markview.enable = true;
+    image.enable = true;
+    neorg.enable = true; # TODO: configure
 
     # TODO: add nix language server
 
