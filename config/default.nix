@@ -24,6 +24,14 @@
 
     # TODO: add nix language server
 
+    which-key = {
+      enable = true;
+
+      settings = {
+        preset = "modern";
+      };
+    };
+
 
     treesitter = {
       enable = true;
