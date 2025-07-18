@@ -3,7 +3,6 @@
   # Import all your configuration modules here
   imports = [ ./bufferline.nix ./keybinds.nix ./telescope.nix ./autoclose.nix ./cmp.nix ./toggleterm.nix ];
 
-  eouaoue
   plugins = {
   # TODO: configure bufferline
     # TODO: configure autopairs
