@@ -3,6 +3,7 @@
   # Import all your configuration modules here
   imports = [ ./bufferline.nix ./keybinds.nix ./telescope.nix ./autoclose.nix ./cmp.nix ./toggleterm.nix ];
 
+  eouaoue
   plugins = {
   # TODO: configure bufferline
     # TODO: configure autopairs
@@ -39,7 +40,6 @@
       settings = {
         highlight.enable = true;
         indent.enable = true;
-
       };
     };
 
@@ -123,8 +123,8 @@
 
   };
 
-  diagnostics = {
-    virtual_lines.only_current_line = true;
+  diagnostic.settings = {
+    virtual_lines = false;
     virtual_text = false;
   };
 
