@@ -22,6 +22,16 @@
     image.enable = true;
     neorg.enable = true; # TODO: configure
 
+    trouble = {
+      enable = true;
+
+      settings = {
+
+        auto_refresh = true;
+
+      };
+    };
+
     # TODO: add nix language server
 
     which-key = {
