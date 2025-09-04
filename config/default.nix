@@ -117,6 +117,7 @@
     scrolloff = 8;
     sidescrolloff = 0;
     splitbelow = true; # new windows go under
+    textwidth = 80;
 
     # line numbers
     number = true;
