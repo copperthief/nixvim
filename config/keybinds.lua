@@ -1,5 +1,6 @@
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
 
 
 function bind(lhs, rhs, modes, opts)
@@ -26,7 +27,7 @@ function bindx(lhs, rhs, modes, opts)
   opts['expr'] = true
   bind(lhs, rhs, modes, opts)
 end
-  
+
 
 bind('h', 'h') -- left
 bind('H', '^') -- beginning of line
@@ -119,6 +120,12 @@ bind('<C-f>', '<cmd>lua vim.lsp.buf.format()<CR>')
 -- plugin stuff
 
 bind('<C-t>', ':ToggleTerm<CR>')
+
+
+-- neorg
+
+bind('<CR>', '<Plug>(neorg.esupports.hop.hop-link)')
+bind(',', '<LocalLeader>')
 
 
 

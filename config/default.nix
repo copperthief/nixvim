@@ -101,7 +101,7 @@
 
   opts = {
 
-    conceallevel = 0; # show all characters in markdown
+    conceallevel = 2; # hide markup unless in current line
     fileencoding = "utf-8";
     showmode = true;
     showtabline = 2; # what do
@@ -219,6 +219,7 @@
             workspaces = {
               vault_of_shinies = "~/vault-of-shinies",
             },
+            default_workspace = "vault_of_shinies",
           },
         },
       }
