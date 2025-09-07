@@ -147,4 +147,3 @@ local keybinds = {
   -- lspconfig
 }
 
-return keybinds

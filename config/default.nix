@@ -1,5 +1,7 @@
 { pkgs, ... }@specialArgs:
 { 
+
+
   # Import all your configuration modules here
   imports = [ ./bufferline.nix ./keybinds.nix ./telescope.nix ./autoclose.nix ./cmp.nix ./toggleterm.nix ];
 
@@ -15,12 +17,10 @@
     oil.enable = true; # TODO: configure
     rustaceanvim.enable = true; # TODO: configure
     # TODO: setup dap stuff
-    # obsidian.enable = true; # TODO: configure
     marks.enable = true; # TODO:configure
-    # TODO try nvim.bacon
     markview.enable = true;
     image.enable = true;
-    neorg.enable = true; # TODO: configure
+
 
     # TODO: add nix language server
 
@@ -140,7 +140,11 @@
 
   };
 
-  extraPlugins = [
+  extraPlugins = with pkgs.vimPlugins; [
+
+    neorg
+
+    neorg-telescope
 
     (pkgs.vimUtils.buildVimPlugin {
       name = "live-preview";
@@ -182,5 +186,25 @@
       };
     })
   ];
+
+  extraConfigLuaPost =
+    /*
+    lua
+    */
+    ''
+    require("neorg").setup {
+      load = {
+        ["core.defaults"] = {},
+        ["core.concealer"] = {},
+        ["core.dirman"] = {
+          config = {
+            workspaces = {
+              vault_of_shinies = "~/vault-of-shinies",
+            },
+          },
+        },
+      }
+    }
+    '';
 
 }

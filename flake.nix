@@ -5,11 +5,14 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    # because the nixvim option for neorg is broken
+    neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
   };
 
   outputs =
-    { nixpkgs, nixvim, flake-parts, ... }@inputs:
+    { nixpkgs, nixvim, flake-parts, neorg-overlay, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
+
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -31,6 +34,7 @@
             };
           };
           nvim = nixvim'.makeNixvimWithModule nixvimModule;
+          pkgs = import nixpkgs { overlays = [ neorg-overlay.overlays.default ]; };
         in
         {
           checks = {
