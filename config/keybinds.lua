@@ -48,7 +48,7 @@ bind('}', '}') -- next paragraph
 bind('l', 'o') -- insert line
 
 bind('/', '/') -- search buffer
-bind('<C-f>', 'n') -- next occurence
+bind('<C-f>', 'n') -- next occurence TODO: change
 bind('<C-F>', 'N') -- previous occurence
 
 -- f F t T # *
@@ -74,7 +74,7 @@ bind('<C-S-x>', ':split<CR>') -- open new horizontal split
 bind('x', '<C-w>w') -- next split
 bind('X', '<C-w>W') -- prev split
 
-bind('b', '<C-w><w>') -- move to next window
+bind('<C-n>', '<C-w><w>') -- move to next window
 -- ex. from main editor to toggleterm
 
 -- these wont work with my keyboard
