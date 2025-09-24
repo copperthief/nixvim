@@ -20,6 +20,7 @@
     marks.enable = true; # TODO:configure
     markview.enable = true;
     image.enable = true;
+    
 
 
     trouble = {
@@ -160,6 +161,8 @@
 
   extraPlugins = with pkgs.vimPlugins; [
 
+    pkgs.texliveFull
+
     neorg
 
     neorg-telescope
@@ -220,6 +223,11 @@
               vault_of_shinies = "~/vault-of-shinies",
             },
             default_workspace = "vault_of_shinies",
+          },
+        },
+        ["core.latex.renderer"] = {
+          config = {
+            render_on_enter = true;
           },
         },
       }
