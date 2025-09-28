@@ -33,6 +33,7 @@ bind('h', 'h') -- left
 bind('H', '^') -- beginning of line
 bind('t', 'j') -- down
 bind('n', 'k') -- up
+
 bind('s', 'l') -- right
 bind('S', '$') -- end of line
 
@@ -77,6 +78,8 @@ bind('X', '<C-w>W') -- prev split
 
 bind('<C-n>', '<C-w><w>') -- move to next window
 -- ex. from main editor to toggleterm
+--
+bind('q', 'za') -- toggle fold
 
 -- these wont work with my keyboard
 --bind('<Leader>>', '<C-w>>') -- increase width of focused split
