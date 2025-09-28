@@ -118,7 +118,7 @@
     scrolloff = 8;
     sidescrolloff = 0;
     splitbelow = true; # new windows go under
-    textwidth = 80;
+    colorcolumn = pkgs.lib.range 81 256;
 
     # line numbers
     number = true;
