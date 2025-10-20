@@ -118,7 +118,7 @@
     scrolloff = 8;
     sidescrolloff = 0;
     splitbelow = true; # new windows go under
-    textwidth = 80;
+    colorcolumn = pkgs.lib.range 81 256;
 
     # line numbers
     number = true;
@@ -206,6 +206,57 @@
           hash = "sha256-qMFE09FSYTCMZ+kktNUSkpuTZmkQEqCfwIw2us/lUos=";
       };
     })
+
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "conifer";
+      src = pkgs.fetchFromGitHub {
+          owner = "lucasadelino";
+          repo = "conifer.nvim";
+          rev = "22da8d6bdcd802198998b478b0a8bd8353512975";
+          hash = "sha256-U/fY8BsarrevU3r7C6sqhJ0kHPDrn4dPF5vjC8QJlw0=";
+      };
+    })
+
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "nanode";
+      src = pkgs.fetchFromGitHub {
+          owner = "KijitoraFinch";
+          repo = "nanode.nvim";
+          rev = "cd85bbb5195b23adfb89a695b54e16daab259800";
+          hash = "sha256-tYhJDpTjDg6NshqBknD71rmagBYkszOKxSg5HNtfKhM=";
+      };
+    })
+
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "anderson";
+      src = pkgs.fetchFromGitHub {
+        owner = "tlhr";
+        repo = "anderson.vim";
+        rev = "77823ba30631fc1d12f443de1eeff97e9c299fdf";
+        hash = "sha256-lsd8PPU1nlili9k8pMENdt5FV91N2HQvmYmD2k9piMg=";
+      };
+    })
+
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "nordic";
+      src = pkgs.fetchFromGitHub {
+        owner = "AlexvZyl";
+        repo = "nordic.nvim";
+        rev = "6afe957722fb1b0ec7ca5fbea5a651bcca55f3e1";
+        hash = "sha256-NY4kjeq01sMTg1PZeVVa2Vle4KpLwWEv4y34cDQ6JMU=";
+      };
+    })
+
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "shades-of-teal";
+      src = pkgs.fetchFromGitHub {
+        owner = "kristiandupont";
+        repo = "shades-of-teal";
+        rev = "5bf84996df5cd34153c447385b81a78f4c9d3add";
+        hash = "sha256-ZW2591pNF6TfF7lXeeeAE1aN7qumuOCkeh8Z3O2QmcM=";
+      };
+    })
+
   ];
 
   extraConfigLuaPost =
