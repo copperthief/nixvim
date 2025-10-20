@@ -98,7 +98,7 @@
   clipboard.register = "unnamedplus"; # use system clipboard
   clipboard.providers.wl-copy.enable = true;
 
-  colorscheme = "ashen";
+  colorscheme = "conifer-lunar";
 
   opts = {
 
