@@ -67,14 +67,19 @@ bind('<C-j>', ':enew<CR>') -- new buffer
 bind('j', ':bn<CR>') -- next buffer
 bind('J', ':bp<CR>') -- prev buffer
 
-bind('<C-k>', ':tabedit .<CR>') -- new tab
-bind('K', ':tabp<CR>') -- prev tab
-bind('k', ':tabn<CR>') -- next tab
+--bind('<C-k>', ':tabedit .<CR>') -- new tab
+--bind('K', ':tabp<CR>') -- prev tab
+--bind('k', ':tabn<CR>') -- next tab
 
 bind('<C-x>', ':vsplit<CR>') -- open new vertical split
 bind('<C-S-x>', ':split<CR>') -- open new horizontal split
 bind('x', '<C-w>w') -- next split
 bind('X', '<C-w>W') -- prev split
+
+bind('ks', '<C-w>>') -- increase width of focused split
+bind('kh', '<C-w><') -- decrease width of focused split
+bind('kn', '<C-w>+') -- increase height of focused split
+bind('kt', '<C-w>-') -- decrease height of focused split
 
 bind('<C-n>', '<C-w><w>') -- move to next window
 -- ex. from main editor to toggleterm

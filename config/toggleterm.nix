@@ -3,7 +3,8 @@
     enable = true;
 
     settings = {
-      size = 20;
+      direction = "vertical";
+      size = 68;
       shade_terminals = false;
       autochdir = true;
     };
