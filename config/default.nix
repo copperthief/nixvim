@@ -66,6 +66,7 @@
         cssls.enable = true;
         cmake.enable = true;
         nil_ls.enable = true;
+        uiua.enable = true;
         #rust-analyzer.enable = true;
         rust_analyzer = {
           installCargo = false;
