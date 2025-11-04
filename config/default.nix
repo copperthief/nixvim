@@ -257,6 +257,16 @@
       };
     })
 
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "test-theme";
+      src = pkgs.fetchFromGitHub {
+        owner = "copperthief";
+        repo = "nvim-theme";
+        rev = "b8797a8379c0bdbdd5f2f4d887d0fa81141adedb";
+        hash = "sha256-6Q2N2UHl1LWuz8HEG6c1/XfuXUFKBsvurqYilkTGITg=";
+      };
+    })
+
   ];
 
   extraConfigLuaPost =
