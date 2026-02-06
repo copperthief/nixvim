@@ -99,7 +99,7 @@
   clipboard.register = "unnamedplus"; # use system clipboard
   clipboard.providers.wl-copy.enable = true;
 
-  colorscheme = "conifer-lunar";
+  colorscheme = "zenwritten";
 
   opts = {
 
@@ -133,7 +133,37 @@
 
     hidden = true;
 
+    # remove default color schemes from menu
+    wildignore = [
+    "blue.vim"
+    "darkblue.vim"
+    "delek.vim"
+    "desert.vim"
+    "elflord.vim"
+    "evening.vim"
+    "habamax.vim"
+    "industry.vim"
+    "koehler.vim"
+    "lunaperche.vim"
+    "morning.vim"
+    "murphy.vim"
+    "pablo.vim"
+    "peachpuff.vim"
+    "quiet.vim"
+    "retrobox.vim"
+    "ron.vim"
+    "shine.vim"
+    "slate.vim"
+    "sorbet.vim"
+    "torte.vim"
+    "wildcharm.vim"
+    "zaibatsu.vim"
+    "zellner.vim"
+    ];
+
   };
+
+  globals.zenbones_compat = 1;
 
   diagnostic.settings = {
     virtual_lines = false;
@@ -150,13 +180,11 @@
   ];
 
   colorschemes = {
-    #cyberdream.enable = true;
-    #everforest.enable = true;
-    #modus.enable = true;
-    #rose-pine.enable = true;
-    #oxocarbon.enable = true;
-    #gruvbox.enable = true;
-    #melange.enable = true;
+    everforest.enable = true;
+    modus.enable = true;
+    oxocarbon.enable = true;
+    gruvbox.enable = true;
+    melange.enable = true;
 
   };
 
@@ -167,6 +195,10 @@
     neorg
 
     neorg-telescope
+
+    zenbones-nvim
+
+    lush-nvim
 
     (pkgs.vimUtils.buildVimPlugin {
       name = "live-preview";
