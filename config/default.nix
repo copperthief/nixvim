@@ -8,7 +8,7 @@
   plugins = {
   # TODO: configure bufferline
     # TODO: configure autopairs
-    lualine.enable = true; # TODO: configure
+    #lualine.enable = true; # TODO: configure
     transparent.enable = true;
     luasnip.enable = true; # TODO: configure
     friendly-snippets.enable = true; # TODO: more snippets?
