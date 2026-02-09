@@ -5,6 +5,8 @@
   # Import all your configuration modules here
   imports = [ ./bufferline.nix ./keybinds.nix ./telescope.nix ./autoclose.nix ./cmp.nix ./toggleterm.nix ];
 
+  extraConfigLua = builtins.readFile ./statusline.lua;
+
   plugins = {
   # TODO: configure bufferline
     # TODO: configure autopairs
