@@ -64,7 +64,6 @@ local function diagnostics()
 end
 
 local function file()
-  local filetype = vim.o.filetype
   local icon = filetype_to_icon[vim.o.filetype]
   if not icon then icon = filetype_to_icon["default"] end
   return "%#StatusLineFileType#" .. icon .. " %f"
@@ -78,13 +77,13 @@ local function git()
 
   table.insert(segments, "%#StatusLineGitBranch#" .. " " .. vim.b.gitsigns_status_dict.head)
 
-  if gitsigns.added ~= 0 then
+  if gitsigns.added and gitsigns.added ~= 0 then
     table.insert(segments, "%#StatusLineGitAdded#" .. " " .. gitsigns.added)
   end
-  if gitsigns.changed ~= 0 then
+  if gitsigns.changed and gitsigns.changed ~= 0 then
     table.insert(segments, "%#StatusLineGitChanged#" .. "󰇂 " .. gitsigns.changed)
   end
-  if gitsigns.removed ~= 0 then
+  if gitsigns.removed and gitsigns.removed ~= 0 then
     table.insert(segments, "%#StatusLineGitRemoved#" .. " " .. gitsigns.removed)
   end
 
