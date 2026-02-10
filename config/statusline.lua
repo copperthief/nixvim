@@ -93,15 +93,14 @@ end
 
 function Statusline()
 
-  local file_ = file()
   local git_ = git()
   local diagnostics_ = diagnostics()
 
   local segments = {}
 
   table.insert(segments, file())
-  if git_ then table.insert(segments, git_) end
-  if diagnostics_ then table.insert(segments, diagnostics_) end
+  if git_ ~= "" then table.insert(segments, git_) end
+  if diagnostics_ ~= "" then table.insert(segments, diagnostics_) end
   table.insert(segments, "%l:%c (%P)")
 
   return table.concat(segments, "%#StatusLineGap#%=")
@@ -111,7 +110,7 @@ end
 vim.api.nvim_create_augroup("statusline", { clear = true })
 vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, { -- InsertLeave ?
   group = "statusline",
-  callback = function ()
+  callback = function()
     vim.opt_local.statusline = "%!v:lua.Statusline()"
   end
 
