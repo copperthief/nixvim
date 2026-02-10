@@ -1,18 +1,7 @@
 
-
-
-
-local mode_name = {
-  n = "NORMAL",
-  v = "VISUAL",
-  s = "SELECT",
-  i = "INSERT",
-  R = "REPLACE",
-  c = "COMMAND",
-  r = "PROMPT",
-  ["!"] = "EXECUTING",
-  t = "TERMINAL",
-}
+local function insert_if_exists(t, e)
+  if e then table.insert(t, e) end
+end
 
 local filetype_to_icon = {
   bash = "󱆃",
@@ -56,33 +45,29 @@ local function diagnostics()
   local num_hints = vim.tbl_count(vim.diagnostic.get(0,
     {severity = vim.diagnostic.severity.HINT }));
 
-  local display = ""
+  local segments = {}
 
   if num_errors ~= 0 then
-    display = display .. "%#StatusLineErrorCount#" .. "" .. num_errors
+    table.insert(segments, "%#StatusLineErrorCount#" .. " " .. num_errors)
   end
   if num_warnings ~= 0 then
-    display = display .. "%#StatusLineWarningCount#" .. "" .. num_warnings
+    table.insert(segments, "%#StatusLineWarningCount#" .. " " .. num_warnings)
   end
   if num_infos ~= 0 then
-    display = display .. "%#StatusLineInfoCount#" .. "" .. num_infos
+    table.insert(segments, "%#StatusLineInfoCount#" .. " " .. num_infos)
   end
   if num_hints ~= 0 then
-    display = display .. "%#StatusLineHintCount#" .. "󰌶" .. num_hints
+    table.insert(segments, "%#StatusLineHintCount#" .. "󰌶 " .. num_hints)
   end
 
-  return display
+  return table.concat(segments, " ")
 end
 
-local function filetype_icon()
+local function file()
   local filetype = vim.o.filetype
   local icon = filetype_to_icon[vim.o.filetype]
   if not icon then icon = filetype_to_icon["default"] end
-
-  return "%#StatusLineFileType#" .. icon .. " #"
-
-  if not filetype_to_icon[filetype] then return filetype_to_icon["default"] end
-  return "%#StatusLineFileType#" .. filetype_to_icon[filetype]
+  return "%#StatusLineFileType#" .. icon .. " %f"
 end
 
 local function git()
@@ -94,13 +79,13 @@ local function git()
   table.insert(segments, "%#StatusLineGitBranch#" .. " " .. vim.b.gitsigns_status_dict.head)
 
   if gitsigns.added ~= 0 then
-    table.insert(segments, "%#StatusLineGitAdded#" .. "󰐕" .. gitsigns.added)
+    table.insert(segments, "%#StatusLineGitAdded#" .. " " .. gitsigns.added)
   end
   if gitsigns.changed ~= 0 then
     table.insert(segments, "%#StatusLineGitChanged#" .. "󰇂 " .. gitsigns.changed)
   end
   if gitsigns.removed ~= 0 then
-    table.insert(segments, "%#StatusLineGitRemoved#" .. "󰍴" .. gitsigns.removed)
+    table.insert(segments, "%#StatusLineGitRemoved#" .. " " .. gitsigns.removed)
   end
 
   return table.concat(segments, " ")
@@ -109,26 +94,18 @@ end
 
 function Statusline()
 
-  local git_segment = git()
+  local file_ = file()
+  local git_ = git()
+  local diagnostics_ = diagnostics()
 
   local segments = {}
 
+  table.insert(segments, file())
+  if git_ then table.insert(segments, git_) end
+  if diagnostics_ then table.insert(segments, diagnostics_) end
+  table.insert(segments, "%l:%c (%P)")
 
-  return table.concat {
-    branch(),
-    changes(),
-    "%#StatusLineGap#",
-    "%=",
-    filetype_icon(),
-    "%#StatusLineFileName#",
-    "%f",
-    "%#StatusLineCursorPos#",
-    "%l:%c (%P)",
-    "%#StatusLineGap#",
-    "%=",
-    diagnostics(),
-    "%#StatusLineMode#" .. vim.api.nvim_get_mode().mode,
-  }
+  return table.concat(segments, "%#StatusLineGap#%=")
 end
 
 
