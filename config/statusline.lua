@@ -14,6 +14,38 @@ local mode_name = {
   t = "TERMINAL",
 }
 
+local filetype_to_icon = {
+  bash = "󱆃",
+  c = "",
+  cmake = "",
+  conf = "",
+  config = "",
+  cpp = "",
+  css = "",
+  csv = "",
+  default = "",
+  desktop = "",
+  diff = "",
+  gitignore = "",
+  glsl = "",
+  help = "󰮥",
+  html = "",
+  java = "",
+  javascript = "",
+  json = "󰘦",
+  json5 = "󰘦",
+  lua = "",
+  markdown = "",
+  nix = "󱄅",
+  python = "",
+  rust = "",
+  scss = "󰬀",
+  text = "󰦨",
+  toml = "",
+  yaml = "",
+  zsh = "󰰶",
+}
+
 local function diagnostics()
   local num_errors = vim.tbl_count(vim.diagnostic.get(0,
     {severity = vim.diagnostic.severity.ERROR }));
@@ -27,66 +59,75 @@ local function diagnostics()
   local display = ""
 
   if num_errors ~= 0 then
-    display = display .. " " .. num_errors
+    display = display .. "%#StatusLineErrorCount#" .. "" .. num_errors
   end
   if num_warnings ~= 0 then
-    display = display .. " " .. num_warnings
+    display = display .. "%#StatusLineWarningCount#" .. "" .. num_warnings
   end
   if num_infos ~= 0 then
-    display = display .. " " .. num_infos
+    display = display .. "%#StatusLineInfoCount#" .. "" .. num_infos
   end
   if num_hints ~= 0 then
-    display = display .. "󰌶 " .. num_hints
+    display = display .. "%#StatusLineHintCount#" .. "󰌶" .. num_hints
   end
 
   return display
 end
 
-local function branch()
-  if not vim.b.gitsigns_status_dict then return "" end
+local function filetype_icon()
+  local filetype = vim.o.filetype
+  local icon = filetype_to_icon[vim.o.filetype]
+  if not icon then icon = filetype_to_icon["default"] end
 
-  local hlgroup = "%#StatusLineGitBranch#"
-  return hlgroup .. " " .. vim.b.gitsigns_status_dict.head
+  return "%#StatusLineFileType#" .. icon .. " #"
+
+  if not filetype_to_icon[filetype] then return filetype_to_icon["default"] end
+  return "%#StatusLineFileType#" .. filetype_to_icon[filetype]
 end
 
-local function changes()
-  if not vim.b.gitsigns_status_dict then return "" end
+local function git()
   local gitsigns = vim.b.gitsigns_status_dict
+  if not gitsigns then return "" end
 
-  local display = ""
+  local segments = {}
+
+  table.insert(segments, "%#StatusLineGitBranch#" .. " " .. vim.b.gitsigns_status_dict.head)
 
   if gitsigns.added ~= 0 then
-    display = display .. "%#StatusLineGitAdded#" .. "󰐕" .. gitsigns.added
+    table.insert(segments, "%#StatusLineGitAdded#" .. "󰐕" .. gitsigns.added)
   end
   if gitsigns.changed ~= 0 then
-    display = display .. "%#StatusLineGitChanged#" .. "󰇂 " .. gitsigns.changed
+    table.insert(segments, "%#StatusLineGitChanged#" .. "󰇂 " .. gitsigns.changed)
   end
   if gitsigns.removed ~= 0 then
-    display = display .. "%#StatusLineGitRemoved#" .. "󰍴" .. gitsigns.removed
+    table.insert(segments, "%#StatusLineGitRemoved#" .. "󰍴" .. gitsigns.removed)
   end
 
-  return display
+  return table.concat(segments, " ")
+
 end
 
 function Statusline()
+
+  local git_segment = git()
+
+  local segments = {}
+
+
   return table.concat {
-    "%#StatusLineGitBranch#",
-    "%#StatusLineFileType#",
-    "%y",
+    branch(),
+    changes(),
+    "%#StatusLineGap#",
+    "%=",
+    filetype_icon(),
     "%#StatusLineFileName#",
     "%f",
     "%#StatusLineCursorPos#",
     "%l:%c (%P)",
     "%#StatusLineGap#",
     "%=",
-    "%#Normal#",
-    branch(),
-    changes(),
     diagnostics(),
-    "%#Comment#",
-    string.format(" %s ", mode_name[vim.api.nvim_get_mode().mode]),
-    string.format(" %s ", vim.api.nvim_get_mode().mode),
-    "[%P %l:%c]"
+    "%#StatusLineMode#" .. vim.api.nvim_get_mode().mode,
   }
 end
 
