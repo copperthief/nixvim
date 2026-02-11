@@ -60,13 +60,14 @@ local function diagnostics()
     table.insert(segments, "%#StatusLineHintCount#" .. "󰌶 " .. num_hints)
   end
 
-  return table.concat(segments, " ")
+  if #segments == 0 then return " " end
+  return "%#StatusLineDiagnostics# " .. table.concat(segments, " ") .. " "
 end
 
 local function file()
   local icon = filetype_to_icon[vim.o.filetype]
   if not icon then icon = filetype_to_icon["default"] end
-  return "%#StatusLineFileType#" .. icon .. " %f"
+  return "%#StatusLineFileType# " .. icon .. " %#StatusLineFileName#%f" .. " "
 end
 
 local function git()
@@ -75,7 +76,7 @@ local function git()
 
   local segments = {}
 
-  table.insert(segments, "%#StatusLineGitBranch#" .. " " .. vim.b.gitsigns_status_dict.head)
+  table.insert(segments, "%#StatusLineGitBranch#" .. " " .. vim.b.gitsigns_status_dict.head .. " ")
 
   if gitsigns.added and gitsigns.added ~= 0 then
     table.insert(segments, "%#StatusLineGitAdded#" .. " " .. gitsigns.added)
@@ -87,7 +88,7 @@ local function git()
     table.insert(segments, "%#StatusLineGitRemoved#" .. " " .. gitsigns.removed)
   end
 
-  return table.concat(segments, " ")
+  return "%#StatusLineGit# " .. table.concat(segments, " ") .. " "
 
 end
 
@@ -105,7 +106,7 @@ function Statusline()
 
   local gap = "%#StatusLineGap#%="
 
-  return git_ .. " " .. file() .. gap .. " " .. diagnostics_ .. " " .. "%l:%c (%P)"
+  return git_ .. file() .. gap .. diagnostics_ .. "%#StatusLinePos# %l:%c (%P) "
 
   --return table.concat(segments, "%#StatusLineGap#%=")
 end
