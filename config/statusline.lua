@@ -74,21 +74,26 @@ local function git()
   local gitsigns = vim.b.gitsigns_status_dict
   if not gitsigns then return "" end
 
-  local segments = {}
+  local branch = "%#StatusLineGitBranch# " .. " " .. vim.b.gitsigns_status_dict.head .. " "
 
-  table.insert(segments, "%#StatusLineGitBranch#" .. " " .. vim.b.gitsigns_status_dict.head .. " ")
+  local changes = {}
 
   if gitsigns.added and gitsigns.added ~= 0 then
-    table.insert(segments, "%#StatusLineGitAdded#" .. " " .. gitsigns.added)
+    table.insert(changes, "%#StatusLineGitAdded#" .. " " .. gitsigns.added)
   end
   if gitsigns.changed and gitsigns.changed ~= 0 then
-    table.insert(segments, "%#StatusLineGitChanged#" .. "󰇂 " .. gitsigns.changed)
+    table.insert(changes, "%#StatusLineGitChanged#" .. "󰇂 " .. gitsigns.changed)
   end
   if gitsigns.removed and gitsigns.removed ~= 0 then
-    table.insert(segments, "%#StatusLineGitRemoved#" .. " " .. gitsigns.removed)
+    table.insert(changes, "%#StatusLineGitRemoved#" .. " " .. gitsigns.removed)
   end
 
-  return "%#StatusLineGit# " .. table.concat(segments, " ") .. " "
+  local change_segment = ""
+  if #changes ~= 0 then
+    change_segment = "%#StatusLineGitChanges# " .. table.concat(changes, " ")
+  end
+
+  return "%#StatusLineGit#" .. branch .. change_segment .. " "
 
 end
 
