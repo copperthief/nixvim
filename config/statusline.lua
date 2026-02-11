@@ -103,7 +103,11 @@ function Statusline()
   if diagnostics_ ~= "" then table.insert(segments, diagnostics_) end
   table.insert(segments, "%l:%c (%P)")
 
-  return table.concat(segments, "%#StatusLineGap#%=")
+  local gap = "%#StatusLineGap#%="
+
+  return git_ .. " " .. file() .. gap .. " " .. diagnostics_ .. " " .. "%l:%c (%P)"
+
+  --return table.concat(segments, "%#StatusLineGap#%=")
 end
 
 
