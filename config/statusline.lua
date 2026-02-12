@@ -90,10 +90,10 @@ local function git()
 
   local change_segment = ""
   if #changes ~= 0 then
-    change_segment = "%#StatusLineGitChanges# " .. table.concat(changes, " ")
+    change_segment = "%#StatusLineGitChanges# " .. table.concat(changes, " ") .. " "
   end
 
-  return "%#StatusLineGit#" .. branch .. change_segment .. " "
+  return "%#StatusLineGit#" .. branch .. change_segment
 
 end
 

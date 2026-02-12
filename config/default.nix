@@ -135,6 +135,10 @@
 
     hidden = true;
 
+
+    guicursor = ''
+    n-v-c:block-blinkwait2000-blinkon1000-blinkoff1000-Cursor/lCursor,i-ci-ve:ver25-blinkwait600-blinkon300-blinkoff300-iCursor/ilCursor,r-cr:hor20-blinkwait500-blinkon200-blinkoff100-rCursor/rlCursor,o:hor50-Cursor/lCursor'';
+
     # remove default color schemes from menu
     wildignore = [
     "blue.vim"
