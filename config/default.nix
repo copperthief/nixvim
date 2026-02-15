@@ -11,7 +11,6 @@
     ./toggleterm.nix
   ];
 
-  #extraConfigLua = builtins.readFile ./statusline.lua + builtins.readFile ./deepsea.lua;
   extraConfigLua = builtins.readFile ./statusline.lua;
 
   plugins = {
@@ -101,7 +100,7 @@
   clipboard.register = "unnamedplus"; # use system clipboard
   clipboard.providers.wl-copy.enable = true;
 
-  colorscheme = "zenwritten";
+  colorscheme = "deepsea";
 
   opts = {
 
@@ -310,8 +309,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "copperthief";
         repo = "deepsea-nvim";
-        rev = "a2f345e8e8a33f3e349a3862bd45a9712d3c1e8f";
-        hash = "sha256-UwQObFVLD/lpmuVaIPXLHPhjekPnGQ217pAAStAgVBU=";
+        rev = "82c9c46d2155f9480aa9306d9cd017d01e4fcff7";
+        hash = "sha256-/avdFJPsJ874I3X3UoIgU8lkACO+XJBZLNsdEmXsNBM=";
       };
     })
 
