@@ -20,14 +20,14 @@ local heat = "#bf7740"
 -- highlight groups
 local g = {}
 
-local function with(orig, new_elems)
+local function extend(original, modified)
   local t = {}
-  for key, val in pairs(orig) do t[key] = val end
-  for key, val in pairs(new_elems) do t[key] = val end
+  for key, val in pairs(original) do t[key] = val end
+  for key, val in pairs(modified) do t[key] = val end
   return t
 end
 
-g.Normal = { fg = murky }
+g.Normal = { fg = murky, bg = deep }
 
 g.Cursor = { bg = tired_light }
 g.iCursor = g.Cursor
@@ -54,13 +54,13 @@ g["@lsp.mod.declaration"] = { fg = searchlight, italic = true }
 g.Visual = { fg = g.Normal.bg, bg = g.Normal.fg }
 g.Search = { fg = light, bold = true }
 g.IncSearch = g.Search
-g.LineNr = g.Comment:with { italic = true }
-g.CursorLineNr = g.LineNr:with { bold = true }
+g.LineNr = extend(g.Comment, { italic = true })
+g.CursorLineNr = extend(g.LineNr, { bold = true })
 g.ColorColumn = { bg = deeper }
 g.WinSeparator = g.Comment
 g.VertSplit = g.WinSeparator
 
-g.Underlined = { underdot = true }
+g.Underlined = { underdotted = true }
 
 g.Error = { fg = coral_heart }
 g.Warning = { fg = heat }
@@ -80,22 +80,22 @@ g.StatusLineTermNC = g.StatusLineNC
 g.StatusLineGit = { bg = shallow, fg = deep }
 g.StatusLineGitBranch = g.StatusLineGit
 g.StatusLineGitChanges = { bg = shallowish }
-g.StatusLineGitAdded = g.StatusLineGitChanges:with { fg = g.Added.fg }
-g.StatusLineGitChanged = g.StatusLineGitChanges:with { fg = g.Changed.fg }
-g.StatusLineGitRemoved = g.StatusLineGitChanges:with { fg = g.Removed.fg }
+g.StatusLineGitAdded = extend(g.StatusLineGitChanges, { fg = g.Added.fg })
+g.StatusLineGitChanged = extend(g.StatusLineGitChanges, { fg = g.Changed.fg })
+g.StatusLineGitRemoved = extend(g.StatusLineGitChanges, { fg = g.Removed.fg })
 g.StatusLineFile = { bg = deepish, fg = searchlight }
 g.StatusLineFileType = g.StatusLineFile
 g.StatusLineFileName = g.StatusLineFile
 g.StatusLineDiagnostics = g.StatusLineFile
-g.StatusLineErrorCount = g.StatusLineDiagnostics:with { fg = g.Error.fg }
-g.StatusLineWarningCount = g.StatusLineDiagnostics:with { fg = g.Warning.fg }
-g.StatusLineInfoCount = g.StatusLineDiagnostics:with { fg = g.Info.fg }
-g.StatusLineHintCount = g.StatusLineDiagnostics:with { fg = g.Hint.fg }
+g.StatusLineErrorCount = extend(g.StatusLineDiagnostics, { fg = g.Error.fg })
+g.StatusLineWarningCount = extend(g.StatusLineDiagnostics, { fg = g.Warning.fg })
+g.StatusLineInfoCount = extend(g.StatusLineDiagnostics, { fg = g.Info.fg })
+g.StatusLineHintCount = extend(g.StatusLineDiagnostics, { fg = g.Hint.fg })
 g.StatusLinePos = g.StatusLineGitChanges
 
 g.BufferLineFill = { bg = deepest }
 g.BufferLineBufferSelected = { fg = searchlight, bg = deep }
-g.BufferLineBackground = g.BufferLineFill:with { fg = thought }
+g.BufferLineBackground = extend(g.BufferLineFill, { fg = thought })
 g.BufferLineSeparator = g.BufferLineFill
 g.BufferLineModifiedSelected = g.BufferLineBufferSelected
 g.BufferLineModifiedVisible = g.BufferLineBackground
@@ -113,57 +113,19 @@ g.DiffChange = g.Changed
 g.DiffDelete = g.Removed
 
 
+local M = {}
 
-local function set_highlight_group(group, attrs)
-  vim.api.nvim_set_hl(0, group, attrs)
-end
+function M.colorscheme()
+  vim.cmd("highlight clear")
+  if vim.fn.exists("syntax_on") then
+    vim.cmd("syntax reset")
+  end
+  vim.o.background = "dark"
+  vim.g.colors_name = "deepsea"
 
-local function set_highlight_groups(groups)
-  for name, attrs in pairs(groups) do
-    -- populate child groups with the attrs of their parent
-    if attrs.inherit then
-      if not attrs.inherit then
-        error("Highlight group " .. attrs.inherit .. " does not exist.")
-      end
-      for key, val in pairs(groups[attrs.inherit]) do
-        if not attrs[key] then
-          attrs[key] = val
-        end
-      end
-      attrs.inherit = nil
-    end
-
-    -- evaluate attrs
-    for key, val in pairs(attrs) do
-      if val == "true" then
-        val = true
-      elseif val == "false" then
-        val = false
-      elseif key ~= "inherit" and val:sub(1, 1) ~= "#" then
-        --local split = {}
-        -- for str in val:gmatch("([a-zA-Z]|\\.)+") do
-        --  split:insert(str)
-        -- end
-        -- if #split ~= 2 then error("Invalid highlight group attribute: " .. val) end
-        local index = val:find(":")
-        if not index then error("Invalid highlight group attribute: " .. key .. ": " .. val) end
-        local parent_group = val:sub(1, index - 1)
-        local inherited_attr = val:sub(index + 1, #val)
-        val = groups[parent_group][inherited_attr]
-      end
-    end
-
-    set_highlight_group(name, attrs)
+  for group, attrs in pairs(g) do
+    vim.api.nvim_set_hl(0, group, attrs)
   end
 end
 
-vim.cmd("highlight clear")
-if vim.fn.exists("syntax_on") then
-  vim.cmd("syntax reset")
-end
-vim.o.background = "dark"
-vim.g.colors_name = "deepsea"
-
-for group, attrs in pairs(g) do
-  vim.api.nvim_set_hl(0, group, attrs)
-end
+return M
