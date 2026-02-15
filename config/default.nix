@@ -1,14 +1,20 @@
 { pkgs, ... }@specialArgs:
-{ 
-
+{
 
   # Import all your configuration modules here
-  imports = [ ./bufferline.nix ./keybinds.nix ./telescope.nix ./autoclose.nix ./cmp.nix ./toggleterm.nix ];
+  imports = [
+    ./bufferline.nix
+    ./keybinds.nix
+    ./telescope.nix
+    ./autoclose.nix
+    ./cmp.nix
+    ./toggleterm.nix
+  ];
 
-  extraConfigLua = builtins.readFile ./statusline.lua;
+  extraConfigLua = builtins.readFile ./statusline.lua + builtins.readFile ./deepsea.lua;
 
   plugins = {
-  # TODO: configure bufferline
+    # TODO: configure bufferline
     # TODO: configure autopairs
     #lualine.enable = true; # TODO: configure
     transparent.enable = true;
@@ -22,8 +28,6 @@
     marks.enable = true; # TODO:configure
     markview.enable = true;
     image.enable = true;
-    
-
 
     trouble = {
       enable = true;
@@ -45,7 +49,6 @@
       };
     };
 
-
     treesitter = {
       enable = true;
 
@@ -55,7 +58,8 @@
       };
     };
 
-    lsp = { # TODO: add langauges
+    lsp = {
+      # TODO: add langauges
       enable = true;
       servers = {
         lua_ls.enable = true;
@@ -77,7 +81,6 @@
       };
     };
 
-
     # TODO: look into sources
     #cmp-buffer.enable = true;
     #cmp-path.enable = true;
@@ -90,13 +93,9 @@
 
     # TODO: yazi wtf vim-be-good timerly which-key specs trouble rest nvim-surround peek smear-cursor prescence octo neorg oil lean papis oil-git-status
     # kulala jupytext neotest nerdy markdown-preview vim-julia-cell vim-nix image.nvim helpview goyo firenvim distant direnv committia commentary vim-sandwich
-    # remote-nvim render-markdown web-tools wilder 
+    # remote-nvim render-markdown web-tools wilder
 
   };
-
-
-
-
 
   clipboard.register = "unnamedplus"; # use system clipboard
   clipboard.providers.wl-copy.enable = true;
@@ -135,36 +134,34 @@
 
     hidden = true;
 
-
-    guicursor = ''
-    n-v-c:block-blinkwait2000-blinkon1000-blinkoff1000-Cursor/lCursor,i-ci-ve:ver25-blinkwait600-blinkon300-blinkoff300-iCursor/ilCursor,r-cr:hor20-blinkwait500-blinkon200-blinkoff100-rCursor/rlCursor,o:hor50-Cursor/lCursor'';
+    guicursor = ''n-v-c:block-blinkwait2000-blinkon1000-blinkoff1000-Cursor/lCursor,i-ci-ve:ver25-blinkwait600-blinkon300-blinkoff300-iCursor/ilCursor,r-cr:hor20-blinkwait500-blinkon200-blinkoff100-rCursor/rlCursor,o:hor50-Cursor/lCursor'';
 
     # remove default color schemes from menu
     wildignore = [
-    "blue.vim"
-    "darkblue.vim"
-    "delek.vim"
-    "desert.vim"
-    "elflord.vim"
-    "evening.vim"
-    "habamax.vim"
-    "industry.vim"
-    "koehler.vim"
-    "lunaperche.vim"
-    "morning.vim"
-    "murphy.vim"
-    "pablo.vim"
-    "peachpuff.vim"
-    "quiet.vim"
-    "retrobox.vim"
-    "ron.vim"
-    "shine.vim"
-    "slate.vim"
-    "sorbet.vim"
-    "torte.vim"
-    "wildcharm.vim"
-    "zaibatsu.vim"
-    "zellner.vim"
+      "blue.vim"
+      "darkblue.vim"
+      "delek.vim"
+      "desert.vim"
+      "elflord.vim"
+      "evening.vim"
+      "habamax.vim"
+      "industry.vim"
+      "koehler.vim"
+      "lunaperche.vim"
+      "morning.vim"
+      "murphy.vim"
+      "pablo.vim"
+      "peachpuff.vim"
+      "quiet.vim"
+      "retrobox.vim"
+      "ron.vim"
+      "shine.vim"
+      "slate.vim"
+      "sorbet.vim"
+      "torte.vim"
+      "wildcharm.vim"
+      "zaibatsu.vim"
+      "zellner.vim"
     ];
 
   };
@@ -177,7 +174,8 @@
   };
 
   autoCmd = [
-    { # DO NOT remove this or lsp completion completely breaks for god knows why
+    {
+      # DO NOT remove this or lsp completion completely breaks for god knows why
       event = [ "LspAttach" ];
       callback = {
         __raw = "function(ev) vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc' end ";
@@ -219,50 +217,50 @@
     (pkgs.vimUtils.buildVimPlugin {
       name = "ashen";
       src = pkgs.fetchFromGitHub {
-          owner = "ficcdaf";
-          repo = "ashen.nvim";
-          rev = "4d161f812f558b5ecde002d80e483a3122ab60f4";
-          hash = "sha256-xfEPDHaVmddfK2jBex34MH8y9p5HrNPaPK18mExdRMQ=";
+        owner = "ficcdaf";
+        repo = "ashen.nvim";
+        rev = "4d161f812f558b5ecde002d80e483a3122ab60f4";
+        hash = "sha256-xfEPDHaVmddfK2jBex34MH8y9p5HrNPaPK18mExdRMQ=";
       };
     })
 
     (pkgs.vimUtils.buildVimPlugin {
       name = "lackluster";
       src = pkgs.fetchFromGitHub {
-          owner = "slugbyte";
-          repo = "lackluster.nvim";
-          rev = "662fba7e6719b7afc155076385c00d79290bc347";
-          hash = "sha256-oZca/MfsYBW0Fa/yBUGXFZKxJ05DfDNeWj5XaOoU4Mo=";
+        owner = "slugbyte";
+        repo = "lackluster.nvim";
+        rev = "662fba7e6719b7afc155076385c00d79290bc347";
+        hash = "sha256-oZca/MfsYBW0Fa/yBUGXFZKxJ05DfDNeWj5XaOoU4Mo=";
       };
     })
 
     (pkgs.vimUtils.buildVimPlugin {
       name = "reddish";
       src = pkgs.fetchFromGitHub {
-          owner = "paulfrische";
-          repo = "reddish.nvim";
-          rev = "82fa574fc58a980143c6094526edd7da76f05f7c";
-          hash = "sha256-qMFE09FSYTCMZ+kktNUSkpuTZmkQEqCfwIw2us/lUos=";
+        owner = "paulfrische";
+        repo = "reddish.nvim";
+        rev = "82fa574fc58a980143c6094526edd7da76f05f7c";
+        hash = "sha256-qMFE09FSYTCMZ+kktNUSkpuTZmkQEqCfwIw2us/lUos=";
       };
     })
 
     (pkgs.vimUtils.buildVimPlugin {
       name = "conifer";
       src = pkgs.fetchFromGitHub {
-          owner = "lucasadelino";
-          repo = "conifer.nvim";
-          rev = "22da8d6bdcd802198998b478b0a8bd8353512975";
-          hash = "sha256-U/fY8BsarrevU3r7C6sqhJ0kHPDrn4dPF5vjC8QJlw0=";
+        owner = "lucasadelino";
+        repo = "conifer.nvim";
+        rev = "22da8d6bdcd802198998b478b0a8bd8353512975";
+        hash = "sha256-U/fY8BsarrevU3r7C6sqhJ0kHPDrn4dPF5vjC8QJlw0=";
       };
     })
 
     (pkgs.vimUtils.buildVimPlugin {
       name = "nanode";
       src = pkgs.fetchFromGitHub {
-          owner = "KijitoraFinch";
-          repo = "nanode.nvim";
-          rev = "cd85bbb5195b23adfb89a695b54e16daab259800";
-          hash = "sha256-tYhJDpTjDg6NshqBknD71rmagBYkszOKxSg5HNtfKhM=";
+        owner = "KijitoraFinch";
+        repo = "nanode.nvim";
+        rev = "cd85bbb5195b23adfb89a695b54e16daab259800";
+        hash = "sha256-tYhJDpTjDg6NshqBknD71rmagBYkszOKxSg5HNtfKhM=";
       };
     })
 
@@ -309,29 +307,27 @@
   ];
 
   extraConfigLuaPost =
-    /*
-    lua
-    */
+    # lua
     ''
-    require("neorg").setup {
-      load = {
-        ["core.defaults"] = {},
-        ["core.concealer"] = {},
-        ["core.dirman"] = {
-          config = {
-            workspaces = {
-              vault_of_shinies = "~/vault-of-shinies",
+      require("neorg").setup {
+        load = {
+          ["core.defaults"] = {},
+          ["core.concealer"] = {},
+          ["core.dirman"] = {
+            config = {
+              workspaces = {
+                vault_of_shinies = "~/vault-of-shinies",
+              },
+              default_workspace = "vault_of_shinies",
             },
-            default_workspace = "vault_of_shinies",
           },
-        },
-        ["core.latex.renderer"] = {
-          config = {
-            render_on_enter = true;
+          ["core.latex.renderer"] = {
+            config = {
+              render_on_enter = true;
+            },
           },
-        },
+        }
       }
-    }
     '';
 
 }
