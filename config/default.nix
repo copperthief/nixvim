@@ -11,7 +11,6 @@
     ./toggleterm.nix
   ];
 
-  #extraConfigLua = builtins.readFile ./statusline.lua + builtins.readFile ./deepsea.lua;
   extraConfigLua = builtins.readFile ./statusline.lua;
 
   plugins = {
@@ -101,7 +100,7 @@
   clipboard.register = "unnamedplus"; # use system clipboard
   clipboard.providers.wl-copy.enable = true;
 
-  colorscheme = "zenwritten";
+  colorscheme = "deepsea";
 
   opts = {
 
@@ -296,22 +295,12 @@
     })
 
     (pkgs.vimUtils.buildVimPlugin {
-      name = "test-theme";
-      src = pkgs.fetchFromGitHub {
-        owner = "copperthief";
-        repo = "nvim-theme";
-        rev = "b8797a8379c0bdbdd5f2f4d887d0fa81141adedb";
-        hash = "sha256-6Q2N2UHl1LWuz8HEG6c1/XfuXUFKBsvurqYilkTGITg=";
-      };
-    })
-
-    (pkgs.vimUtils.buildVimPlugin {
       name = "deepsea-nvim";
       src = pkgs.fetchFromGitHub {
         owner = "copperthief";
         repo = "deepsea-nvim";
-        rev = "a2f345e8e8a33f3e349a3862bd45a9712d3c1e8f";
-        hash = "sha256-UwQObFVLD/lpmuVaIPXLHPhjekPnGQ217pAAStAgVBU=";
+        rev = "c4b6c8a151832de4d73e2761a259b2458a8925b7";
+        hash = "sha256-RkXZNUgicFxJfjmoWy2C8/2+RTz2ZZwSK3G1mx35Nzc=";
       };
     })
 
