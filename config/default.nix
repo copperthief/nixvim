@@ -23,7 +23,7 @@
     gitsigns.enable = true; # TODO: configure
     todo-comments.enable = true;
     oil.enable = true; # TODO: configure
-    #rustaceanvim.enable = true; # TODO: configure
+    rustaceanvim.enable = true; # TODO: configure
     # TODO: setup dap stuff
     marks.enable = true; # TODO:configure
     markview.enable = true;
@@ -73,7 +73,7 @@
         cmake.enable = true;
         nil_ls.enable = true;
         uiua.enable = true;
-        rust_analyzer.enable = true;
+        #rust_analyzer.enable = true;
         rust_analyzer = {
           installCargo = false;
           installRustc = false;
