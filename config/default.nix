@@ -13,6 +13,21 @@
 
   extraConfigLua = builtins.readFile ./statusline.lua;
 
+  lsp.servers.rust_analyzer.config = {
+    cargo.features = "all";
+    check.command = "clippy";
+
+    diagnostics = {
+      enable = true;
+      experimental.enable = true;
+      styleLints.enable = true;
+    };
+
+    hover = {
+      actions.references.enable = true;
+    };
+  };
+
   plugins = {
     # TODO: configure bufferline
     # TODO: configure autopairs
