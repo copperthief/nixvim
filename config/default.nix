@@ -314,8 +314,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "copperthief";
         repo = "deepsea-nvim";
-        rev = "1bae6c2fc9de7ab88950ecacb009e13da6cbb782";
-        hash = "sha256-n/TsUJzpJXSLKrx71aKjcyRpwTG2d1LO6FKSSgl4tDE=";
+        rev = "da62b82b66658645c2f26f96360ca937ae2ed097";
+        hash = "sha256-EdCbstO49fi/1CYZYMeY81BNHgBnRnWzxIjoa/Dv3jU=";
       };
     })
 
